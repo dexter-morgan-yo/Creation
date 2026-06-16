@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="page-title">Sudhersan D — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;700;800&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0b0f1a; --surface:#111827; --border:#1e2a3a;
+      --accent:#6c63ff; --accent2:#00d4aa;
+      --text:#e8eaf0; --muted:#7a85a0; --card:#141d2e;
+      --radius:14px;
+      --font-disp:'Syne',sans-serif;
+      --font-body:'Space Grotesk',sans-serif;
+      --font-mono:'JetBrains Mono',monospace;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;overflow-x:hidden;transition:background .3s,color .3s}
+    a{color:inherit;text-decoration:none}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");background-size:200px;pointer-events:none;z-index:0;opacity:.4}
+    .container{max-width:900px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;backdrop-filter:blur(20px);background:rgba(11,15,26,.8);border-bottom:1px solid var(--border);z-index:100;transition:background .3s}
+    .nav-inner{max-width:900px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
+    .nav-logo{font-family:var(--font-disp);font-weight:800;font-size:1.15rem;letter-spacing:-.5px}
+    .nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:28px}
+    .nav-links a{font-size:.85rem;font-weight:500;color:var(--muted);transition:color .2s}
+    .nav-links a:hover{color:var(--text)}
+    @media(max-width:600px){.nav-links{display:none}}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative}
+    .hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,.15) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+    .hero-content{position:relative}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:.78rem;color:var(--accent2);margin-bottom:20px}
+    .hero-tag::before{content:'';display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent2);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+    .hero-name{font-family:var(--font-disp);font-size:clamp(2.8rem,8vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-2px;margin-bottom:6px}
+    .hero-name .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-subtitle{font-family:var(--font-mono);font-size:.95rem;color:var(--muted);margin-bottom:28px;letter-spacing:.5px}
+    .hero-desc{font-size:1.1rem;color:var(--muted);max-width:520px;margin-bottom:40px;line-height:1.8}
+    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;padding:12px 26px;border-radius:40px;font-weight:600;font-size:.9rem;transition:transform .2s,box-shadow .2s;box-shadow:0 4px 24px rgba(108,99,255,.35)}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,99,255,.5)}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);color:var(--text);padding:12px 26px;border-radius:40px;font-weight:500;font-size:.9rem;transition:border-color .2s,background .2s}
+    .btn-ghost:hover{border-color:var(--accent);background:rgba(108,99,255,.08)}
+    .stats-bar{display:flex;gap:32px;flex-wrap:wrap;margin-top:56px;padding-top:40px;border-top:1px solid var(--border)}
+    .stat-item{display:flex;flex-direction:column;gap:2px}
+    .stat-num{font-family:var(--font-disp);font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+    .stat-label{font-size:.8rem;color:var(--muted);font-weight:500}
+
+    /* SECTIONS */
+    section{padding:96px 0}
+    .section-eyebrow{font-family:var(--font-mono);font-size:.78rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+    .section-title{font-family:var(--font-disp);font-size:clamp(1.8rem,4vw,2.6rem);font-weight:800;letter-spacing:-1px;margin-bottom:14px}
+    .section-sub{color:var(--muted);font-size:1rem;max-width:500px;margin-bottom:48px}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    @media(max-width:640px){.about-grid{grid-template-columns:1fr}}
+    .about-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px;transition:border-color .25s,transform .25s}
+    .about-card:hover{border-color:var(--accent);transform:translateY(-3px)}
+    .card-icon{font-size:1.6rem;margin-bottom:12px}
+    .card-title{font-family:var(--font-disp);font-weight:700;font-size:1rem;margin-bottom:6px}
+    .card-body{font-size:.88rem;color:var(--muted);line-height:1.7}
+
+    /* INTERESTS */
+    .interests-list{display:flex;flex-wrap:wrap;gap:12px}
+    .interest-pill{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);padding:10px 18px;border-radius:40px;font-size:.88rem;font-weight:500;transition:all .2s}
+    .interest-pill:hover{border-color:var(--accent2);color:var(--accent2)}
+
+    /* EDUCATION */
+    .edu-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:32px;display:flex;gap:24px;align-items:flex-start;transition:border-color .25s}
+    .edu-card:hover{border-color:var(--accent)}
+    .edu-icon{width:52px;height:52px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+    .edu-degree{font-family:var(--font-disp);font-weight:700;font-size:1.05rem}
+    .edu-meta{font-size:.82rem;color:var(--accent2);font-family:var(--font-mono);margin:4px 0 8px}
+    .edu-desc{font-size:.88rem;color:var(--muted)}
+
+    /* SOCIAL */
+    .links-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+    .social-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;display:flex;align-items:center;gap:14px;transition:all .25s;cursor:pointer}
+    .social-card:hover{border-color:var(--accent);background:rgba(108,99,255,.08);transform:translateY(-2px)}
+    .social-icon{width:40px;height:40px;flex-shrink:0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+    .s-name{font-weight:600;font-size:.9rem}
+    .s-handle{font-size:.78rem;color:var(--muted);font-family:var(--font-mono)}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:32px 0;text-align:center}
+    footer p{font-size:.82rem;color:var(--muted)}
+    footer span{color:var(--accent)}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    /* ══════════════════════════════════════
+       CUSTOMIZER
+    ══════════════════════════════════════ */
+    #customizer-toggle{position:fixed;bottom:28px;right:28px;z-index:300;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;box-shadow:0 4px 20px rgba(108,99,255,.5);transition:transform .3s}
+    #customizer-toggle:hover{transform:scale(1.08) rotate(20deg)}
+    #customizer-toggle.open{transform:rotate(45deg)}
+
+    /* LOCK OVERLAY */
+    #lock-overlay{position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+    #lock-overlay.show{opacity:1;pointer-events:all}
+    .lock-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:36px 32px;width:340px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.6)}
+    .lock-icon{font-size:2.4rem;margin-bottom:14px}
+    .lock-title{font-family:var(--font-disp);font-weight:800;font-size:1.2rem;margin-bottom:6px}
+    .lock-sub{font-size:.82rem;color:var(--muted);margin-bottom:22px}
+    .lock-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--font-body);font-size:.95rem;padding:11px 14px;outline:none;text-align:center;letter-spacing:3px;transition:border-color .2s;margin-bottom:14px}
+    .lock-input:focus{border-color:var(--accent)}
+    .lock-input.error{border-color:#e94560;animation:shake .3s}
+    @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+    .lock-btn{width:100%;padding:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:#fff;font-family:var(--font-body);font-weight:700;font-size:.95rem;cursor:pointer;transition:opacity .2s}
+    .lock-btn:hover{opacity:.88}
+    .lock-cancel{display:block;margin-top:10px;font-size:.8rem;color:var(--muted);cursor:pointer;background:none;border:none;font-family:var(--font-body);width:100%}
+    .lock-cancel:hover{color:var(--text)}
+    .lock-err{font-size:.8rem;color:#e94560;margin-top:-8px;margin-bottom:10px;min-height:18px}
+
+    /* PANEL */
+    #customizer-panel{position:fixed;bottom:94px;right:28px;z-index:300;width:370px;max-height:80vh;overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:0 20px 60px rgba(0,0,0,.55);transform:translateY(20px) scale(.95);opacity:0;pointer-events:none;transition:all .25s cubic-bezier(.34,1.56,.64,1)}
+    #customizer-panel.open{transform:translateY(0) scale(1);opacity:1;pointer-events:all}
+    #customizer-panel::-webkit-scrollbar{width:4px}
+    #customizer-panel::-webkit-scrollbar-track{background:transparent}
+    #customizer-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+    /* TABS */
+    .cp-header{padding:20px 20px 0;position:sticky;top:0;background:var(--surface);z-index:10;border-radius:20px 20px 0 0}
+    .cp-title{font-family:var(--font-disp);font-weight:800;font-size:1rem;margin-bottom:2px;display:flex;align-items:center;gap:8px}
+    .cp-sub{font-size:.75rem;color:var(--muted);margin-bottom:14px}
+    .cp-tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:12px;border-bottom:1px solid var(--border);scrollbar-width:none}
+    .cp-tabs::-webkit-scrollbar{display:none}
+    .cp-tab{flex-shrink:0;padding:6px 12px;border-radius:8px;border:1px solid transparent;font-size:.75rem;font-weight:600;cursor:pointer;background:none;color:var(--muted);font-family:var(--font-body);transition:all .2s;white-space:nowrap}
+    .cp-tab.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .cp-tab:hover:not(.active){border-color:var(--border);color:var(--text)}
+
+    /* TAB CONTENT */
+    .cp-body{padding:18px 20px 20px}
+    .cp-pane{display:none}
+    .cp-pane.active{display:block}
+
+    /* FORM ELEMENTS */
+    .cp-section{margin-bottom:16px}
+    .cp-label{font-size:.72rem;color:var(--muted);font-weight:600;margin-bottom:6px;display:block;text-transform:uppercase;letter-spacing:.8px;font-family:var(--font-mono)}
+    .cp-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:.85rem;padding:9px 12px;outline:none;transition:border-color .2s}
+    .cp-input:focus{border-color:var(--accent)}
+    textarea.cp-input{resize:vertical;min-height:72px}
+    .cp-row{display:flex;gap:8px;align-items:center}
+    .cp-row .cp-input{flex:1}
+    .cp-color{width:38px;height:38px;border-radius:8px;border:1px solid var(--border);padding:3px;background:var(--bg);cursor:pointer;flex-shrink:0}
+    .cp-swatches{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px}
+    .swatch{width:24px;height:24px;border-radius:6px;cursor:pointer;border:2px solid transparent;transition:all .15s}
+    .swatch:hover{transform:scale(1.15)}
+    .swatch.active{border-color:#fff}
+    .cp-divider{border:none;border-top:1px solid var(--border);margin:14px 0}
+    .cp-grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .cp-select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:.85rem;padding:9px 12px;outline:none;cursor:pointer;-webkit-appearance:none;appearance:none}
+    .cp-select:focus{border-color:var(--accent)}
+    .cp-range{width:100%;accent-color:var(--accent);cursor:pointer;margin-top:4px}
+    .range-row{display:flex;align-items:center;gap:10px}
+    .range-val{font-size:.78rem;color:var(--accent2);font-family:var(--font-mono);min-width:30px}
+
+    /* PRESET BUTTONS */
+    .preset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .preset-btn{padding:8px 4px;border-radius:8px;border:1px solid var(--border);font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:var(--font-body)}
+    .preset-btn:hover{transform:translateY(-1px)}
+
+    /* LINKS LIST */
+    .cp-link-item{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px}
+    .cp-link-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+    .cp-link-icon{font-size:1.1rem;width:28px;text-align:center}
+    .cp-link-name{font-weight:600;font-size:.85rem;flex:1}
+    .cp-link-toggle{width:36px;height:20px;background:var(--border);border-radius:10px;border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background .2s}
+    .cp-link-toggle.on{background:var(--accent)}
+    .cp-link-toggle::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .2s}
+    .cp-link-toggle.on::after{transform:translateX(16px)}
+    .cp-link-fields{display:flex;flex-direction:column;gap:6px}
+    .cp-link-fields .cp-input{font-size:.8rem;padding:7px 10px}
+
+    /* INTEREST TAGS EDITOR */
+    .tags-editor{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+    .tag-chip{display:inline-flex;align-items:center;gap:4px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:5px 10px;font-size:.78rem}
+    .tag-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;line-height:1;padding:0;transition:color .15s}
+    .tag-remove:hover{color:#e94560}
+    .tag-add-row{display:flex;gap:6px}
+    .tag-add-row .cp-input{flex:1;font-size:.8rem;padding:7px 10px}
+    .tag-add-btn{padding:7px 12px;background:var(--accent);border:none;border-radius:8px;color:#fff;font-size:.8rem;font-weight:600;cursor:pointer;transition:opacity .2s;font-family:var(--font-body)}
+    .tag-add-btn:hover{opacity:.85}
+
+    /* ABOUT CARDS EDITOR */
+    .about-editor-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:10px}
+    .about-editor-card .cp-grid2{margin-bottom:6px}
+
+    /* STATS EDITOR */
+    .stat-editor-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+    .stat-editor-row .cp-input{flex:1}
+    .stat-editor-row .stat-lbl{font-size:.75rem;color:var(--muted);font-family:var(--font-mono);width:50px;flex-shrink:0}
+
+    /* BOTTOM BUTTONS */
+    .cp-footer{padding:0 20px 20px;position:sticky;bottom:0;background:var(--surface);padding-top:12px;border-top:1px solid var(--border)}
+    .cp-btn{width:100%;padding:11px;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;color:#fff;font-family:var(--font-body);font-weight:700;font-size:.88rem;cursor:pointer;transition:opacity .2s;margin-bottom:6px}
+    .cp-btn:hover{opacity:.88}
+    .cp-btn-outline{width:100%;padding:9px;background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--muted);font-family:var(--font-body);font-size:.8rem;cursor:pointer;transition:all .2s}
+    .cp-btn-outline:hover{border-color:var(--accent);color:var(--text)}
+    .cp-save-note{font-size:.72rem;color:var(--accent2);text-align:center;margin-top:6px;font-family:var(--font-mono)}
+
+    /* CHANGE PASSWORD */
+    .chpass-form{display:flex;flex-direction:column;gap:8px}
+    .cp-msg{font-size:.78rem;padding:8px 12px;border-radius:8px;text-align:center;display:none}
+    .cp-msg.success{background:rgba(0,212,170,.12);color:var(--accent2);display:block}
+    .cp-msg.error{background:rgba(233,69,96,.12);color:#e94560;display:block}
+
+    @media(max-width:420px){
+      #customizer-panel{right:10px;left:10px;width:auto;bottom:84px}
+      #customizer-toggle{bottom:16px;right:16px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" id="nav-logo-text">S<span>.</span>D</div>
+    <div class="nav-links" id="nav-links-container">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#interests">Interests</a>
+      <a href="#connect">Connect</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-tag" id="hero-tag">Available for opportunities</div>
+      <h1 class="hero-name">
+        <span id="hero-firstname">Sudhersan</span><br>
+        <span class="highlight" id="hero-lastname">D.</span>
+      </h1>
+      <p class="hero-subtitle" id="hero-subtitle">B.Com Student &amp; Digital Explorer</p>
+      <p class="hero-desc" id="hero-desc">A 20-year-old curious mind studying commerce while diving deep into gaming universes, binge-worthy series, and the endless joy of learning something new every single day.</p>
+      <div class="hero-ctas">
+        <a href="#connect" class="btn-primary" id="cta-primary-el">Connect with me →</a>
+        <a href="#about" class="btn-ghost" id="cta-secondary-el">Learn more</a>
+      </div>
+      <div class="stats-bar" id="stats-bar">
+        <div class="stat-item"><span class="stat-num" id="stat-age">20</span><span class="stat-label" id="stat-age-label">Years Old</span></div>
+        <div class="stat-item"><span class="stat-num" id="stat-2-num">3rd</span><span class="stat-label" id="stat-2-label">Year, B.Com</span></div>
+        <div class="stat-item"><span class="stat-num" id="stat-3-num">∞</span><span class="stat-label" id="stat-3-label">Things to Learn</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow" id="about-eyebrow">Who I Am</p>
+      <h2 class="section-title" id="about-title">A bit about me</h2>
+      <p class="section-sub" id="about-sub">Commerce student by day, explorer of worlds by night — digital or otherwise.</p>
+    </div>
+    <div class="about-grid reveal" id="about-grid"></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow" id="edu-eyebrow">Academic Journey</p>
+      <h2 class="section-title" id="edu-title">Education</h2>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-icon" id="edu-icon">🎓</div>
+      <div>
+        <div class="edu-degree" id="edu-degree">Bachelor of Commerce (B.Com)</div>
+        <div class="edu-meta" id="edu-meta">3rd Year · 2023 – 2026</div>
+        <div class="edu-desc" id="edu-desc">Studying commerce with a focus on accounting, business management, and economics. Building a strong foundation in financial literacy and business strategy while staying curious about the digital economy.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERESTS -->
+<section id="interests">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow" id="int-eyebrow">Passions &amp; Pursuits</p>
+      <h2 class="section-title" id="int-title">What I'm into</h2>
+      <p class="section-sub" id="int-sub">A few things that keep life interesting.</p>
+    </div>
+    <div class="interests-list reveal" id="interests-list"></div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-eyebrow" id="connect-eyebrow">Reach Out</p>
+      <h2 class="section-title" id="connect-title">Let's connect</h2>
+      <p class="section-sub" id="connect-sub">Find me across the internet. Pick your platform.</p>
+    </div>
+    <div class="links-grid reveal" id="social-grid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Crafted with curiosity by <span id="footer-name">Sudhersan D</span> · <span id="footer-year"></span></p>
+  </div>
+</footer>
+
+<!-- LOCK OVERLAY -->
+<div id="lock-overlay">
+  <div class="lock-box">
+    <div class="lock-icon">🔐</div>
+    <div class="lock-title">Customizer Access</div>
+    <div class="lock-sub">Enter the password to unlock editing</div>
+    <input class="lock-input" id="lock-input" type="password" placeholder="••••••••••" maxlength="32" autocomplete="off">
+    <div class="lock-err" id="lock-err"></div>
+    <button class="lock-btn" onclick="checkPassword()">Unlock →</button>
+    <button class="lock-cancel" onclick="closeLock()">Cancel</button>
+  </div>
+</div>
+
+<!-- CUSTOMIZER TOGGLE -->
+<button id="customizer-toggle" title="Customize site" onclick="onToggleClick()">⚙</button>
+
+<!-- CUSTOMIZER PANEL -->
+<div id="customizer-panel">
+  <div class="cp-header">
+    <div class="cp-title">✦ Customizer <span style="font-size:.7rem;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-family:var(--font-mono)">UNLOCKED</span></div>
+    <div class="cp-sub">Every change saves automatically to your browser.</div>
+    <div class="cp-tabs" id="cp-tabs">
+      <button class="cp-tab active" data-tab="identity">🪪 Identity</button>
+      <button class="cp-tab" data-tab="content">📝 Content</button>
+      <button class="cp-tab" data-tab="stats">📊 Stats</button>
+      <button class="cp-tab" data-tab="cards">🃏 Cards</button>
+      <button class="cp-tab" data-tab="interests">💡 Interests</button>
+      <button class="cp-tab" data-tab="links">🔗 Links</button>
+      <button class="cp-tab" data-tab="colors">🎨 Colors</button>
+      <button class="cp-tab" data-tab="fonts">🔤 Fonts</button>
+      <button class="cp-tab" data-tab="layout">⚙ Layout</button>
+      <button class="cp-tab" data-tab="security">🔒 Password</button>
+    </div>
+  </div>
+
+  <div class="cp-body">
+
+    <!-- IDENTITY -->
+    <div class="cp-pane active" id="pane-identity">
+      <div class="cp-section">
+        <label class="cp-label">First Name</label>
+        <input class="cp-input" id="cp-firstname" value="Sudhersan">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Last Name / Initial</label>
+        <input class="cp-input" id="cp-lastname" value="D">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Page Title (Browser Tab)</label>
+        <input class="cp-input" id="cp-pagetitle" value="Sudhersan D — Portfolio">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Status Badge</label>
+        <input class="cp-input" id="cp-tag" value="Available for opportunities">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Tagline / Role</label>
+        <input class="cp-input" id="cp-subtitle" value="B.Com Student &amp; Digital Explorer">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Short Bio</label>
+        <textarea class="cp-input" id="cp-bio">A 20-year-old curious mind studying commerce while diving deep into gaming universes, binge-worthy series, and the endless joy of learning something new every single day.</textarea>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Primary Button Text</label>
+        <input class="cp-input" id="cp-cta1" value="Connect with me →">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Secondary Button Text</label>
+        <input class="cp-input" id="cp-cta2" value="Learn more">
+      </div>
+    </div>
+
+    <!-- CONTENT (section labels) -->
+    <div class="cp-pane" id="pane-content">
+      <div class="cp-section">
+        <label class="cp-label">About — Eyebrow</label>
+        <input class="cp-input" id="cp-about-eyebrow" value="Who I Am">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">About — Title</label>
+        <input class="cp-input" id="cp-about-title" value="A bit about me">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">About — Subtitle</label>
+        <input class="cp-input" id="cp-about-sub" value="Commerce student by day, explorer of worlds by night — digital or otherwise.">
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Education — Eyebrow</label>
+        <input class="cp-input" id="cp-edu-eyebrow" value="Academic Journey">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Education — Title</label>
+        <input class="cp-input" id="cp-edu-title" value="Education">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Degree Name</label>
+        <input class="cp-input" id="cp-edu-degree" value="Bachelor of Commerce (B.Com)">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Year / Period</label>
+        <input class="cp-input" id="cp-edu-meta" value="3rd Year · 2023 – 2026">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Education Description</label>
+        <textarea class="cp-input" id="cp-edu-desc">Studying commerce with a focus on accounting, business management, and economics. Building a strong foundation in financial literacy and business strategy while staying curious about the digital economy.</textarea>
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Interests — Eyebrow</label>
+        <input class="cp-input" id="cp-int-eyebrow" value="Passions &amp; Pursuits">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Interests — Title</label>
+        <input class="cp-input" id="cp-int-title" value="What I'm into">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Interests — Subtitle</label>
+        <input class="cp-input" id="cp-int-sub" value="A few things that keep life interesting.">
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Connect — Eyebrow</label>
+        <input class="cp-input" id="cp-connect-eyebrow" value="Reach Out">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Connect — Title</label>
+        <input class="cp-input" id="cp-connect-title" value="Let's connect">
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Connect — Subtitle</label>
+        <input class="cp-input" id="cp-connect-sub" value="Find me across the internet. Pick your platform.">
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Footer Text</label>
+        <input class="cp-input" id="cp-footer-text" value="Crafted with curiosity by">
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="cp-pane" id="pane-stats">
+      <div class="cp-section">
+        <label class="cp-label">Stat 1 — Value (auto = age)</label>
+        <div class="cp-grid2">
+          <input class="cp-input" id="cp-s1-num" value="AUTO" placeholder="AUTO or value">
+          <input class="cp-input" id="cp-s1-label" value="Years Old">
+        </div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Stat 2</label>
+        <div class="cp-grid2">
+          <input class="cp-input" id="cp-s2-num" value="3rd">
+          <input class="cp-input" id="cp-s2-label" value="Year, B.Com">
+        </div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Stat 3</label>
+        <div class="cp-grid2">
+          <input class="cp-input" id="cp-s3-num" value="∞">
+          <input class="cp-input" id="cp-s3-label" value="Things to Learn">
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT CARDS -->
+    <div class="cp-pane" id="pane-cards">
+      <div id="about-cards-editor"></div>
+    </div>
+
+    <!-- INTERESTS -->
+    <div class="cp-pane" id="pane-interests">
+      <label class="cp-label">Interest Tags</label>
+      <div class="tags-editor" id="tags-editor"></div>
+      <div class="tag-add-row">
+        <input class="cp-input" id="tag-new-input" placeholder="e.g. 🎵 Music">
+        <button class="tag-add-btn" onclick="addTag()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="cp-pane" id="pane-links">
+      <div id="cp-links-container"></div>
+      <button class="tag-add-btn" style="width:100%;padding:9px;margin-top:4px;border-radius:10px" onclick="addNewLink()">+ Add new link</button>
+    </div>
+
+    <!-- COLORS -->
+    <div class="cp-pane" id="pane-colors">
+      <div class="cp-section">
+        <label class="cp-label">Theme Presets</label>
+        <div class="preset-grid">
+          <button class="preset-btn" style="background:#0b0f1a;color:#6c63ff;border-color:#1e2a3a" onclick="applyPreset('dark')">🌑 Dark</button>
+          <button class="preset-btn" style="background:#f0f4ff;color:#6c63ff;border-color:#c5d0f0" onclick="applyPreset('light')">☀️ Light</button>
+          <button class="preset-btn" style="background:#0d1117;color:#00d4aa;border-color:#1a2332" onclick="applyPreset('midnight')">🌌 Midnight</button>
+          <button class="preset-btn" style="background:#1a0a2e;color:#c77dff;border-color:#3d1f6e" onclick="applyPreset('purple')">💜 Purple</button>
+          <button class="preset-btn" style="background:#0d1f0d;color:#4ade80;border-color:#1a3a1a" onclick="applyPreset('forest')">🌿 Forest</button>
+          <button class="preset-btn" style="background:#1a0a00;color:#fb923c;border-color:#3a1a00" onclick="applyPreset('ember')">🔥 Ember</button>
+        </div>
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Accent Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-accent" value="#6c63ff"></div>
+        <div class="cp-swatches">
+          <div class="swatch active" style="background:#6c63ff" data-color="#6c63ff" data-tgt="accent"></div>
+          <div class="swatch" style="background:#e94560" data-color="#e94560" data-tgt="accent"></div>
+          <div class="swatch" style="background:#f59e0b" data-color="#f59e0b" data-tgt="accent"></div>
+          <div class="swatch" style="background:#0ea5e9" data-color="#0ea5e9" data-tgt="accent"></div>
+          <div class="swatch" style="background:#10b981" data-color="#10b981" data-tgt="accent"></div>
+          <div class="swatch" style="background:#c77dff" data-color="#c77dff" data-tgt="accent"></div>
+          <div class="swatch" style="background:#fb923c" data-color="#fb923c" data-tgt="accent"></div>
+          <div class="swatch" style="background:#f472b6" data-color="#f472b6" data-tgt="accent"></div>
+        </div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Highlight Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-accent2" value="#00d4aa"></div>
+        <div class="cp-swatches">
+          <div class="swatch active" style="background:#00d4aa" data-color="#00d4aa" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#a78bfa" data-color="#a78bfa" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#34d399" data-color="#34d399" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#fb923c" data-color="#fb923c" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#f472b6" data-color="#f472b6" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#fbbf24" data-color="#fbbf24" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#60a5fa" data-color="#60a5fa" data-tgt="accent2"></div>
+          <div class="swatch" style="background:#4ade80" data-color="#4ade80" data-tgt="accent2"></div>
+        </div>
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Background Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-bg" value="#0b0f1a"></div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Card Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-card" value="#141d2e"></div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Text Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-text-color" value="#e8eaf0"></div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Muted Text Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-muted" value="#7a85a0"></div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Border Color</label>
+        <div class="cp-row"><input type="color" class="cp-color" id="cp-border-color" value="#1e2a3a"></div>
+      </div>
+    </div>
+
+    <!-- FONTS -->
+    <div class="cp-pane" id="pane-fonts">
+      <div class="cp-section">
+        <label class="cp-label">Display / Heading Font</label>
+        <select class="cp-select" id="cp-font-disp">
+          <option value="'Syne',sans-serif">Syne (current)</option>
+          <option value="'Playfair Display',serif">Playfair Display</option>
+          <option value="'Rajdhani',sans-serif">Rajdhani</option>
+          <option value="'Inter',sans-serif">Inter</option>
+          <option value="'Space Grotesk',sans-serif">Space Grotesk</option>
+        </select>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Body Font</label>
+        <select class="cp-select" id="cp-font-body">
+          <option value="'Space Grotesk',sans-serif">Space Grotesk (current)</option>
+          <option value="'Inter',sans-serif">Inter</option>
+          <option value="'Syne',sans-serif">Syne</option>
+          <option value="'Rajdhani',sans-serif">Rajdhani</option>
+        </select>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Mono / Code Font</label>
+        <select class="cp-select" id="cp-font-mono">
+          <option value="'JetBrains Mono',monospace">JetBrains Mono (current)</option>
+          <option value="'Courier New',monospace">Courier New</option>
+          <option value="monospace">System Mono</option>
+        </select>
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Base Font Size</label>
+        <div class="range-row">
+          <input type="range" class="cp-range" id="cp-fontsize" min="14" max="20" value="16">
+          <span class="range-val" id="cp-fontsize-val">16px</span>
+        </div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Line Height</label>
+        <div class="range-row">
+          <input type="range" class="cp-range" id="cp-lineheight" min="14" max="22" value="17">
+          <span class="range-val" id="cp-lineheight-val">1.7</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAYOUT -->
+    <div class="cp-pane" id="pane-layout">
+      <div class="cp-section">
+        <label class="cp-label">Border Radius (Cards)</label>
+        <div class="range-row">
+          <input type="range" class="cp-range" id="cp-radius" min="0" max="28" value="14">
+          <span class="range-val" id="cp-radius-val">14px</span>
+        </div>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Max Content Width</label>
+        <select class="cp-select" id="cp-maxwidth">
+          <option value="760px">Narrow (760px)</option>
+          <option value="900px" selected>Default (900px)</option>
+          <option value="1080px">Wide (1080px)</option>
+          <option value="1200px">Full (1200px)</option>
+        </select>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Section Vertical Padding</label>
+        <div class="range-row">
+          <input type="range" class="cp-range" id="cp-secpad" min="40" max="140" value="96">
+          <span class="range-val" id="cp-secpad-val">96px</span>
+        </div>
+      </div>
+      <hr class="cp-divider">
+      <div class="cp-section">
+        <label class="cp-label">Show Noise Texture</label>
+        <select class="cp-select" id="cp-noise">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Show Hero Glow</label>
+        <select class="cp-select" id="cp-glow">
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="cp-section">
+        <label class="cp-label">Scroll Animations</label>
+        <select class="cp-select" id="cp-anim">
+          <option value="1">Enabled</option>
+          <option value="0">Disabled</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- SECURITY -->
+    <div class="cp-pane" id="pane-security">
+      <div class="cp-section">
+        <label class="cp-label">Change Customizer Password</label>
+        <div class="chpass-form">
+          <input class="cp-input" id="cp-pw-current" type="password" placeholder="Current password">
+          <input class="cp-input" id="cp-pw-new" type="password" placeholder="New password">
+          <input class="cp-input" id="cp-pw-confirm" type="password" placeholder="Confirm new password">
+          <div id="cp-pw-msg" class="cp-msg"></div>
+          <button class="lock-btn" onclick="changePassword()" style="border-radius:10px">Update Password</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.cp-body -->
+
+  <div class="cp-footer">
+    <button class="cp-btn" onclick="applyAll()">✓ Apply All Changes</button>
+    <button class="cp-btn-outline" onclick="resetAll()">↺ Reset Everything</button>
+    <div class="cp-save-note" id="save-note"></div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════
+   DEFAULTS
+════════════════════════════════════════════ */
+const DOB = new Date(2005, 5, 30);
+const STORAGE_KEY = 'sd_site_v3';
+const DEFAULT_PW_HASH = hashStr('crismartin');
+
+const DEFAULT_ABOUT_CARDS = [
+  {icon:'🎮', title:'Gamer',            body:'From strategy titles to immersive RPGs, gaming is a way to think creatively, solve problems, and build worlds.'},
+  {icon:'📺', title:'Series Enthusiast',body:'A dedicated fan of compelling storytelling. Thrillers, sci-fi, dramas — great writing and characters keep me hooked.'},
+  {icon:'📚', title:'Lifelong Learner', body:'Curiosity is my compass. Technology, finance, psychology — if it\'s interesting, I\'m diving in. Learning everything is not an exaggeration.'},
+  {icon:'💼', title:'Commerce Student', body:'Pursuing B.Com with an eye on the intersection of business, technology, and the future of work.'},
+];
+
+const DEFAULT_INTERESTS = [
+  '🎮 Gaming','📺 Watching Series','📖 Learning Everything',
+  '💡 Technology','📊 Finance & Business','🎧 Music',
+  '🌐 Internet Culture','🚀 Future Trends',
+];
+
+const DEFAULT_LINKS = [
+  {id:'instagram',label:'Instagram',  icon:'📸',color:'#e1306c',bg:'rgba(225,48,108,.12)', url:'https://instagram.com/', handle:'@sudhersan',  on:true},
+  {id:'twitter',  label:'X (Twitter)',icon:'𝕏', color:'#1d9bf0',bg:'rgba(29,155,240,.12)', url:'https://x.com/',         handle:'@sudhersan',  on:true},
+  {id:'linkedin', label:'LinkedIn',   icon:'🔗',color:'#0a66c2',bg:'rgba(10,102,194,.12)', url:'https://linkedin.com/in/',handle:'sudhersan-d', on:true},
+  {id:'github',   label:'GitHub',     icon:'⌨', color:'#aaaaaa',bg:'rgba(170,170,170,.1)', url:'https://github.com/',    handle:'sudhersan',   on:true},
+  {id:'youtube',  label:'YouTube',    icon:'▶', color:'#ff0000',bg:'rgba(255,0,0,.1)',      url:'https://youtube.com/',   handle:'@sudhersan',  on:true},
+  {id:'discord',  label:'Discord',    icon:'🎮',color:'#5865f2',bg:'rgba(88,101,242,.12)', url:'https://discord.com/',   handle:'sudhersan',   on:false},
+];
+
+/* ════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════ */
+function defaultState() {
+  return {
+    // identity
+    firstname:'Sudhersan', lastname:'D',
+    pagetitle:'Sudhersan D — Portfolio',
+    tag:'Available for opportunities',
+    subtitle:'B.Com Student & Digital Explorer',
+    bio:"A 20-year-old curious mind studying commerce while diving deep into gaming universes, binge-worthy series, and the endless joy of learning something new every single day.",
+    cta1:'Connect with me →', cta2:'Learn more',
+    // content
+    aboutEyebrow:'Who I Am', aboutTitle:'A bit about me', aboutSub:'Commerce student by day, explorer of worlds by night — digital or otherwise.',
+    eduEyebrow:'Academic Journey', eduTitle:'Education',
+    eduDegree:'Bachelor of Commerce (B.Com)', eduMeta:'3rd Year · 2023 – 2026',
+    eduDesc:'Studying commerce with a focus on accounting, business management, and economics. Building a strong foundation in financial literacy and business strategy while staying curious about the digital economy.',
+    intEyebrow:'Passions & Pursuits', intTitle:"What I'm into", intSub:'A few things that keep life interesting.',
+    connectEyebrow:'Reach Out', connectTitle:"Let's connect", connectSub:'Find me across the internet. Pick your platform.',
+    footerText:'Crafted with curiosity by',
+    // stats
+    s1num:'AUTO', s1label:'Years Old',
+    s2num:'3rd', s2label:'Year, B.Com',
+    s3num:'∞', s3label:'Things to Learn',
+    // cards
+    aboutCards: JSON.parse(JSON.stringify(DEFAULT_ABOUT_CARDS)),
+    // interests
+    interests: [...DEFAULT_INTERESTS],
+    // links
+    links: JSON.parse(JSON.stringify(DEFAULT_LINKS)),
+    // colors
+    accent:'#6c63ff', accent2:'#00d4aa',
+    bg:'#0b0f1a', card:'#141d2e',
+    textColor:'#e8eaf0', muted:'#7a85a0', borderColor:'#1e2a3a',
+    // fonts
+    fontDisp:"'Syne',sans-serif",
+    fontBody:"'Space Grotesk',sans-serif",
+    fontMono:"'JetBrains Mono',monospace",
+    fontSize:16, lineHeight:17,
+    // layout
+    radius:14, maxWidth:'900px', secPad:96,
+    noise:1, glow:1, anim:1,
+  };
+}
+
+let S = loadState();
+let unlocked = false;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      const def = defaultState();
+      return Object.assign(def, parsed);
+    }
+  } catch(e){}
+  return defaultState();
+}
+
+function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(S));
+}
+
+/* ════════════════════════════════════════════
+   PASSWORD
+════════════════════════════════════════════ */
+function hashStr(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) {
+    h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+  }
+  return h.toString(36);
+}
+
+function getStoredHash() {
+  return localStorage.getItem('sd_pw_hash') || DEFAULT_PW_HASH;
+}
+
+function onToggleClick() {
+  if (unlocked) {
+    togglePanel();
+  } else {
+    document.getElementById('lock-overlay').classList.add('show');
+    document.getElementById('lock-input').value = '';
+    document.getElementById('lock-err').textContent = '';
+    document.getElementById('lock-input').classList.remove('error');
+    setTimeout(() => document.getElementById('lock-input').focus(), 100);
+  }
+}
+
+function checkPassword() {
+  const val = document.getElementById('lock-input').value;
+  const inp = document.getElementById('lock-input');
+  if (hashStr(val) === getStoredHash()) {
+    unlocked = true;
+    document.getElementById('lock-overlay').classList.remove('show');
+    populatePanel();
+    togglePanel();
+    inp.classList.remove('error');
+    document.getElementById('lock-err').textContent = '';
+  } else {
+    inp.classList.add('error');
+    document.getElementById('lock-err').textContent = 'Incorrect password. Try again.';
+    inp.value = '';
+    setTimeout(() => inp.classList.remove('error'), 400);
+  }
+}
+
+function closeLock() {
+  document.getElementById('lock-overlay').classList.remove('show');
+}
+
+document.getElementById('lock-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') checkPassword();
+});
+
+function changePassword() {
+  const cur  = document.getElementById('cp-pw-current').value;
+  const nw   = document.getElementById('cp-pw-new').value;
+  const conf = document.getElementById('cp-pw-confirm').value;
+  const msg  = document.getElementById('cp-pw-msg');
+  msg.className = 'cp-msg';
+
+  if (hashStr(cur) !== getStoredHash()) {
+    msg.textContent = 'Current password is incorrect.';
+    msg.classList.add('error'); return;
+  }
+  if (nw.length < 4) {
+    msg.textContent = 'New password must be at least 4 characters.';
+    msg.classList.add('error'); return;
+  }
+  if (nw !== conf) {
+    msg.textContent = 'Passwords do not match.';
+    msg.classList.add('error'); return;
+  }
+  localStorage.setItem('sd_pw_hash', hashStr(nw));
+  msg.textContent = '✓ Password updated successfully!';
+  msg.classList.add('success');
+  document.getElementById('cp-pw-current').value = '';
+  document.getElementById('cp-pw-new').value = '';
+  document.getElementById('cp-pw-confirm').value = '';
+}
+
+/* ════════════════════════════════════════════
+   PANEL TOGGLE
+════════════════════════════════════════════ */
+const toggle = document.getElementById('customizer-toggle');
+const panel  = document.getElementById('customizer-panel');
+
+function togglePanel() {
+  toggle.classList.toggle('open');
+  panel.classList.toggle('open');
+}
+
+/* ════════════════════════════════════════════
+   TABS
+════════════════════════════════════════════ */
+document.querySelectorAll('.cp-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.cp-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.cp-pane').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('pane-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+/* ════════════════════════════════════════════
+   POPULATE PANEL FROM STATE
+════════════════════════════════════════════ */
+function populatePanel() {
+  // Identity
+  setVal('cp-firstname', S.firstname);
+  setVal('cp-lastname', S.lastname);
+  setVal('cp-pagetitle', S.pagetitle);
+  setVal('cp-tag', S.tag);
+  setVal('cp-subtitle', S.subtitle);
+  setVal('cp-bio', S.bio);
+  setVal('cp-cta1', S.cta1);
+  setVal('cp-cta2', S.cta2);
+  // Content
+  setVal('cp-about-eyebrow', S.aboutEyebrow);
+  setVal('cp-about-title', S.aboutTitle);
+  setVal('cp-about-sub', S.aboutSub);
+  setVal('cp-edu-eyebrow', S.eduEyebrow);
+  setVal('cp-edu-title', S.eduTitle);
+  setVal('cp-edu-degree', S.eduDegree);
+  setVal('cp-edu-meta', S.eduMeta);
+  setVal('cp-edu-desc', S.eduDesc);
+  setVal('cp-int-eyebrow', S.intEyebrow);
+  setVal('cp-int-title', S.intTitle);
+  setVal('cp-int-sub', S.intSub);
+  setVal('cp-connect-eyebrow', S.connectEyebrow);
+  setVal('cp-connect-title', S.connectTitle);
+  setVal('cp-connect-sub', S.connectSub);
+  setVal('cp-footer-text', S.footerText);
+  // Stats
+  setVal('cp-s1-num', S.s1num); setVal('cp-s1-label', S.s1label);
+  setVal('cp-s2-num', S.s2num); setVal('cp-s2-label', S.s2label);
+  setVal('cp-s3-num', S.s3num); setVal('cp-s3-label', S.s3label);
+  // Colors
+  setVal('cp-accent', S.accent); setVal('cp-accent2', S.accent2);
+  setVal('cp-bg', S.bg); setVal('cp-card', S.card);
+  setVal('cp-text-color', S.textColor); setVal('cp-muted', S.muted);
+  setVal('cp-border-color', S.borderColor);
+  // Fonts
+  setVal('cp-font-disp', S.fontDisp);
+  setVal('cp-font-body', S.fontBody);
+  setVal('cp-font-mono', S.fontMono);
+  setVal('cp-fontsize', S.fontSize);
+  setVal('cp-lineheight', S.lineHeight);
+  document.getElementById('cp-fontsize-val').textContent = S.fontSize + 'px';
+  document.getElementById('cp-lineheight-val').textContent = (S.lineHeight/10).toFixed(1);
+  // Layout
+  setVal('cp-radius', S.radius);
+  setVal('cp-maxwidth', S.maxWidth);
+  setVal('cp-secpad', S.secPad);
+  setVal('cp-noise', S.noise);
+  setVal('cp-glow', S.glow);
+  setVal('cp-anim', S.anim);
+  document.getElementById('cp-radius-val').textContent = S.radius + 'px';
+  document.getElementById('cp-secpad-val').textContent = S.secPad + 'px';
+
+  renderCardsEditor();
+  renderTagsEditor();
+  renderLinksEditor();
+}
+
+function setVal(id, val) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.value = val;
+}
+
+/* ════════════════════════════════════════════
+   RANGE LIVE PREVIEW
+════════════════════════════════════════════ */
+function liveRange(id, valId, unit, scale, cssVar) {
+  const el = document.getElementById(id);
+  el.addEventListener('input', () => {
+    const v = parseFloat(el.value);
+    const display = scale ? (v/10).toFixed(1) : v + unit;
+    document.getElementById(valId).textContent = display;
+    if (cssVar) document.documentElement.style.setProperty(cssVar, scale ? (v/10) : v + unit);
+  });
+}
+liveRange('cp-radius', 'cp-radius-val', 'px', false, '--radius');
+liveRange('cp-secpad', 'cp-secpad-val', 'px', false, null);
+liveRange('cp-fontsize', 'cp-fontsize-val', 'px', false, null);
+liveRange('cp-lineheight', 'cp-lineheight-val', '', true, null);
+
+/* ════════════════════════════════════════════
+   SWATCH CLICK
+════════════════════════════════════════════ */
+document.addEventListener('click', e => {
+  const sw = e.target.closest('.swatch');
+  if (!sw) return;
+  const tgt = sw.dataset.tgt;
+  const color = sw.dataset.color;
+  document.querySelectorAll(`.swatch[data-tgt="${tgt}"]`).forEach(s => s.classList.remove('active'));
+  sw.classList.add('active');
+  document.getElementById(`cp-${tgt}`).value = color;
+  document.documentElement.style.setProperty(`--${tgt}`, color);
+});
+
+['accent','accent2','bg','card','text-color','muted','border-color'].forEach(k => {
+  const el = document.getElementById('cp-' + k);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    const cssK = k === 'text-color' ? 'text' : k === 'border-color' ? 'border' : k;
+    document.documentElement.style.setProperty('--' + cssK, el.value);
+  });
+});
+
+/* ════════════════════════════════════════════
+   ABOUT CARDS EDITOR
+════════════════════════════════════════════ */
+function renderCardsEditor() {
+  const wrap = document.getElementById('about-cards-editor');
+  wrap.innerHTML = '';
+  S.aboutCards.forEach((c, i) => {
+    const div = document.createElement('div');
+    div.className = 'about-editor-card';
+    div.innerHTML = `
+      <div class="cp-grid2" style="margin-bottom:6px">
+        <input class="cp-input" style="font-size:.8rem;padding:7px 10px" placeholder="Icon" id="ac-icon-${i}" value="${c.icon}">
+        <input class="cp-input" style="font-size:.8rem;padding:7px 10px" placeholder="Title" id="ac-title-${i}" value="${c.title}">
+      </div>
+      <textarea class="cp-input" style="font-size:.78rem;padding:7px 10px;min-height:56px" id="ac-body-${i}">${c.body}</textarea>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+/* ════════════════════════════════════════════
+   TAGS EDITOR
+════════════════════════════════════════════ */
+function renderTagsEditor() {
+  const wrap = document.getElementById('tags-editor');
+  wrap.innerHTML = '';
+  S.interests.forEach((tag, i) => {
+    const chip = document.createElement('span');
+    chip.className = 'tag-chip';
+    chip.innerHTML = `${tag} <button class="tag-remove" onclick="removeTag(${i})">✕</button>`;
+    wrap.appendChild(chip);
+  });
+}
+
+function removeTag(i) {
+  S.interests.splice(i, 1);
+  renderTagsEditor();
+}
+
+function addTag() {
+  const inp = document.getElementById('tag-new-input');
+  const val = inp.value.trim();
+  if (!val) return;
+  S.interests.push(val);
+  inp.value = '';
+  renderTagsEditor();
+  renderInterests();
+}
+
+/* ════════════════════════════════════════════
+   LINKS EDITOR
+════════════════════════════════════════════ */
+function renderLinksEditor() {
+  const wrap = document.getElementById('cp-links-container');
+  wrap.innerHTML = '';
+  S.links.forEach((l, i) => {
+    const div = document.createElement('div');
+    div.className = 'cp-link-item';
+    div.innerHTML = `
+      <div class="cp-link-top">
+        <span class="cp-link-icon">${l.icon}</span>
+        <span class="cp-link-name">${l.label}</span>
+        <button class="cp-link-toggle ${l.on ? 'on' : ''}" id="lt-${i}" onclick="toggleLink(${i})"></button>
+      </div>
+      <div class="cp-link-fields">
+        <input class="cp-input" id="ll-label-${i}" placeholder="Label" value="${l.label}">
+        <input class="cp-input" id="ll-icon-${i}"  placeholder="Icon emoji" value="${l.icon}">
+        <input class="cp-input" id="ll-url-${i}"   placeholder="URL" value="${l.url}">
+        <input class="cp-input" id="ll-handle-${i}" placeholder="Handle / username" value="${l.handle}">
+      </div>
+    `;
+    wrap.appendChild(div);
+  });
+}
+
+function toggleLink(i) {
+  S.links[i].on = !S.links[i].on;
+  document.getElementById('lt-' + i).classList.toggle('on', S.links[i].on);
+}
+
+function addNewLink() {
+  S.links.push({id:'new'+Date.now(), label:'New Link', icon:'🌐', color:'#aaa', bg:'rgba(170,170,170,.1)', url:'https://', handle:'username', on:true});
+  renderLinksEditor();
+}
+
+/* ════════════════════════════════════════════
+   PRESETS
+════════════════════════════════════════════ */
+function applyPreset(name) {
+  const p = {
+    dark:     {bg:'#0b0f1a',card:'#141d2e',border:'#1e2a3a',text:'#e8eaf0',muted:'#7a85a0',surface:'#111827'},
+    light:    {bg:'#f0f4ff',card:'#e4eaf8',border:'#d0d8f0',text:'#0b0f1a',muted:'#4a5568',surface:'#ffffff'},
+    midnight: {bg:'#0d1117',card:'#0d1520',border:'#1a2332',text:'#cdd9e5',muted:'#6e7f8d',surface:'#161b22'},
+    purple:   {bg:'#1a0a2e',card:'#250d40',border:'#3d1f6e',text:'#e8d5ff',muted:'#9d6ecc',surface:'#200c38'},
+    forest:   {bg:'#0d1f0d',card:'#122112',border:'#1a3a1a',text:'#d4f0d4',muted:'#6b9e6b',surface:'#111f11'},
+    ember:    {bg:'#1a0a00',card:'#251000',border:'#3a1a00',text:'#ffeedd',muted:'#aa7755',surface:'#200c00'},
+  }[name];
+  if (!p) return;
+  Object.entries(p).forEach(([k,v]) => {
+    const cssK = k==='text'?'text':k==='border'?'border':k;
+    document.documentElement.style.setProperty('--'+cssK, v);
+    if (k==='bg')     { S.bg = v; setVal('cp-bg',v); }
+    if (k==='card')   { S.card = v; setVal('cp-card',v); }
+    if (k==='border') { S.borderColor = v; setVal('cp-border-color',v); }
+    if (k==='text')   { S.textColor = v; setVal('cp-text-color',v); }
+    if (k==='muted')  { S.muted = v; setVal('cp-muted',v); }
+  });
+}
+
+/* ════════════════════════════════════════════
+   RENDER SITE FROM STATE
+════════════════════════════════════════════ */
+function calcAge() {
+  const today = new Date();
+  let age = today.getFullYear() - DOB.getFullYear();
+  if (today.getMonth() < DOB.getMonth() || (today.getMonth() === DOB.getMonth() && today.getDate() < DOB.getDate())) age--;
+  return age;
+}
+
+function renderSite() {
+  // Tokens
+  document.documentElement.style.setProperty('--accent', S.accent);
+  document.documentElement.style.setProperty('--accent2', S.accent2);
+  document.documentElement.style.setProperty('--bg', S.bg);
+  document.documentElement.style.setProperty('--card', S.card);
+  document.documentElement.style.setProperty('--text', S.textColor);
+  document.documentElement.style.setProperty('--muted', S.muted);
+  document.documentElement.style.setProperty('--border', S.borderColor);
+  document.documentElement.style.setProperty('--radius', S.radius + 'px');
+  document.documentElement.style.setProperty('--font-disp', S.fontDisp);
+  document.documentElement.style.setProperty('--font-body', S.fontBody);
+  document.documentElement.style.setProperty('--font-mono', S.fontMono);
+
+  document.body.style.fontSize = S.fontSize + 'px';
+  document.body.style.lineHeight = (S.lineHeight/10).toFixed(1);
+  document.querySelector('body::before') && null; // can't target pseudo — handled via noise toggle below
+  document.body.style.setProperty('--noise-opacity', S.noise ? '.4' : '0');
+
+  // Layout
+  document.querySelectorAll('.container').forEach(c => c.style.maxWidth = S.maxWidth);
+  document.querySelectorAll('section').forEach(s => s.style.padding = S.secPad + 'px 0');
+  document.querySelector('.hero-glow').style.display = S.glow ? '' : 'none';
+
+  // Page title
+  document.title = S.pagetitle;
+
+  // Hero
+  setText('hero-tag', S.tag);
+  setText('hero-firstname', S.firstname);
+  setText('hero-lastname', S.lastname + '.');
+  setText('hero-subtitle', S.subtitle);
+  setText('hero-desc', S.bio);
+  setText('cta-primary-el', S.cta1);
+  setText('cta-secondary-el', S.cta2);
+
+  // Nav
+  document.getElementById('nav-logo-text').innerHTML = `${S.firstname.charAt(0)}<span>.</span>${S.lastname.charAt(0)}`;
+
+  // Stats
+  const age = calcAge();
+  setText('stat-age', S.s1num === 'AUTO' ? age : S.s1num);
+  setText('stat-age-label', S.s1label);
+  setText('stat-2-num', S.s2num);
+  setText('stat-2-label', S.s2label);
+  setText('stat-3-num', S.s3num);
+  setText('stat-3-label', S.s3label);
+
+  // Section labels
+  setText('about-eyebrow', S.aboutEyebrow);
+  setText('about-title', S.aboutTitle);
+  setText('about-sub', S.aboutSub);
+  setText('edu-eyebrow', S.eduEyebrow);
+  setText('edu-title', S.eduTitle);
+  setText('edu-degree', S.eduDegree);
+  setText('edu-meta', S.eduMeta);
+  setText('edu-desc', S.eduDesc);
+  setText('int-eyebrow', S.intEyebrow);
+  setText('int-title', S.intTitle);
+  setText('int-sub', S.intSub);
+  setText('connect-eyebrow', S.connectEyebrow);
+  setText('connect-title', S.connectTitle);
+  setText('connect-sub', S.connectSub);
+  document.getElementById('footer-name').textContent = S.firstname + ' ' + S.lastname;
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  const fp = document.querySelector('footer p');
+  if (fp) fp.innerHTML = `${S.footerText} <span id="footer-name">${S.firstname} ${S.lastname}</span> · <span id="footer-year">${new Date().getFullYear()}</span>`;
+
+  // About cards
+  renderAboutCards();
+  // Interests
+  renderInterests();
+  // Social
+  renderSocialGrid();
+}
+
+function setText(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
+function renderAboutCards() {
+  const grid = document.getElementById('about-grid');
+  grid.innerHTML = '';
+  S.aboutCards.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'about-card';
+    div.innerHTML = `<div class="card-icon">${c.icon}</div><div class="card-title">${c.title}</div><div class="card-body">${c.body}</div>`;
+    grid.appendChild(div);
+  });
+}
+
+function renderInterests() {
+  const list = document.getElementById('interests-list');
+  list.innerHTML = '';
+  S.interests.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'interest-pill';
+    span.textContent = tag;
+    list.appendChild(span);
+  });
+}
+
+function renderSocialGrid() {
+  const grid = document.getElementById('social-grid');
+  grid.innerHTML = '';
+  S.links.filter(l => l.on && l.url).forEach(l => {
+    const a = document.createElement('a');
+    a.href = l.url; a.target = '_blank'; a.rel = 'noopener';
+    a.className = 'social-card';
+    a.innerHTML = `
+      <div class="social-icon" style="background:${l.bg};color:${l.color}">${l.icon}</div>
+      <div><div class="s-name">${l.label}</div><div class="s-handle">${l.handle}</div></div>`;
+    grid.appendChild(a);
+  });
+}
+
+/* ════════════════════════════════════════════
+   APPLY ALL
+════════════════════════════════════════════ */
+function applyAll() {
+  // Identity
+  S.firstname = gv('cp-firstname'); S.lastname = gv('cp-lastname');
+  S.pagetitle = gv('cp-pagetitle'); S.tag = gv('cp-tag');
+  S.subtitle = gv('cp-subtitle'); S.bio = gv('cp-bio');
+  S.cta1 = gv('cp-cta1'); S.cta2 = gv('cp-cta2');
+  // Content
+  S.aboutEyebrow = gv('cp-about-eyebrow'); S.aboutTitle = gv('cp-about-title'); S.aboutSub = gv('cp-about-sub');
+  S.eduEyebrow = gv('cp-edu-eyebrow'); S.eduTitle = gv('cp-edu-title');
+  S.eduDegree = gv('cp-edu-degree'); S.eduMeta = gv('cp-edu-meta'); S.eduDesc = gv('cp-edu-desc');
+  S.intEyebrow = gv('cp-int-eyebrow'); S.intTitle = gv('cp-int-title'); S.intSub = gv('cp-int-sub');
+  S.connectEyebrow = gv('cp-connect-eyebrow'); S.connectTitle = gv('cp-connect-title'); S.connectSub = gv('cp-connect-sub');
+  S.footerText = gv('cp-footer-text');
+  // Stats
+  S.s1num = gv('cp-s1-num'); S.s1label = gv('cp-s1-label');
+  S.s2num = gv('cp-s2-num'); S.s2label = gv('cp-s2-label');
+  S.s3num = gv('cp-s3-num'); S.s3label = gv('cp-s3-label');
+  // About cards
+  S.aboutCards = S.aboutCards.map((c, i) => ({
+    icon: gv('ac-icon-'+i) || c.icon,
+    title: gv('ac-title-'+i) || c.title,
+    body: gv('ac-body-'+i) || c.body,
+  }));
+  // Links
+  S.links = S.links.map((l, i) => ({
+    ...l,
+    label:  gv('ll-label-'+i) || l.label,
+    icon:   gv('ll-icon-'+i)  || l.icon,
+    url:    gv('ll-url-'+i)   || l.url,
+    handle: gv('ll-handle-'+i)|| l.handle,
+  }));
+  // Colors
+  S.accent = gv('cp-accent'); S.accent2 = gv('cp-accent2');
+  S.bg = gv('cp-bg'); S.card = gv('cp-card');
+  S.textColor = gv('cp-text-color'); S.muted = gv('cp-muted'); S.borderColor = gv('cp-border-color');
+  // Fonts
+  S.fontDisp = gv('cp-font-disp'); S.fontBody = gv('cp-font-body'); S.fontMono = gv('cp-font-mono');
+  S.fontSize = parseInt(gv('cp-fontsize')); S.lineHeight = parseInt(gv('cp-lineheight'));
+  // Layout
+  S.radius = parseInt(gv('cp-radius')); S.maxWidth = gv('cp-maxwidth');
+  S.secPad = parseInt(gv('cp-secpad'));
+  S.noise = parseInt(gv('cp-noise')); S.glow = parseInt(gv('cp-glow')); S.anim = parseInt(gv('cp-anim'));
+
+  saveState();
+  renderSite();
+  setupReveal();
+
+  const note = document.getElementById('save-note');
+  note.textContent = '✓ Saved at ' + new Date().toLocaleTimeString();
+  setTimeout(() => note.textContent = '', 3000);
+}
+
+function gv(id) {
+  const el = document.getElementById(id);
+  return el ? el.value : '';
+}
+
+/* ════════════════════════════════════════════
+   RESET
+════════════════════════════════════════════ */
+function resetAll() {
+  if (!confirm('Reset all customizations to default? This cannot be undone.')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  S = defaultState();
+  saveState();
+  renderSite();
+  populatePanel();
+  const note = document.getElementById('save-note');
+  note.textContent = '↺ Reset to defaults';
+  setTimeout(() => note.textContent = '', 3000);
+}
+
+/* ════════════════════════════════════════════
+   SCROLL REVEAL
+════════════════════════════════════════════ */
+function setupReveal() {
+  if (!S.anim) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.remove('visible');
+    obs.observe(el);
+  });
+}
+
+/* ════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════ */
+renderSite();
+setupReveal();
+</script>
+</body>
+</html>
